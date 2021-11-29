@@ -19,6 +19,9 @@ if [ ! -f /etc/openldap/CONFIGURED ]; then
         # We are root, we can use user input!
         # Bring in default databse config
         cp /usr/local/etc/openldap/DB_CONFIG /var/lib/ldap/DB_CONFIG
+        
+        mv -f /opt/openshift/lib/* /var/lib/ldap
+        mv -f /opt/openshift/config/* /etc/openldap        
 
         # start the daemon in another process and make config changes
         slapd -h "ldap:/// ldaps:/// ldapi:///" -d $OPENLDAP_DEBUG_LEVEL &
